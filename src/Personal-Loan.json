@@ -1,0 +1,13 @@
+[
+    {
+        "Id":1,
+        "Name":"Rohit Chaurasiya",
+        "LoanId":131696987,
+        "LoanType":"Personal Loan",
+        "StartDate":"07/02/2024",
+        "EndDate":"07/02/2026",
+        "Tenure":2,
+        "Rate-Of-Intrest":"5%",
+        "Emi-Date":"08/03/2024"
+    }
+]

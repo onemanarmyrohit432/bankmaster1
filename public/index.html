@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Master</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./index.css">
+
+    <script type="text/javascript">
+
+        function LoadLoans() {
+            fetch("/src/loan.json")
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (categories) {
+                    
+                    categories.unshift("Select Loan Type");
+
+                    categories.map(function (category) {
+                        var option = document.createElement("option");
+                        option.text = category.toUpperCase();
+                        option.value = category;
+                        document.getElementById("showLoan").appendChild(option)
+                    })
+                })
+        }
+
+        function bodyload() {
+            LoadLoans();
+        }
+
+        function Loanchange() {
+            var LoanName = document.getElementById("showLoan").value;
+
+            // console.log(LoanName);
+
+            var Details = document.getElementById("showDetails");
+
+            var heading = document.getElementById("dataHead");
+            var subHeading = document.getElementById("dataBody");
+
+            var JsonType = "";
+            var keyName = [];
+
+
+                if(LoanName == "personal loan"){
+                    JsonType = "/src/Personal-Loan.json";
+
+                    // window.location.reload();
+
+                }else if(LoanName == "business loan"){
+
+                    JsonType = "/src/Business-Loan.json";
+
+                }else if(LoanName == "house loan"){
+                    JsonType = "/src/House-Loan.json";
+                }
+
+                fetch(JsonType)
+                    .then(function (res) {
+                        return res.json();
+                    })
+                    .then(function (data) {
+                        data.map((value) => {
+
+                            Details.innerHTML = "";
+
+                            var h3 = document.createElement("h3");
+                            h3.innerHTML = value.LoanType;
+                            Details.appendChild(h3);
+                            
+                            var p = document.createElement("p");
+                            p.innerHTML = value.LoanId;
+                            Details.appendChild(p)
+                            keyName.push(Object.keys(value));
+
+                            // console.log(value)
+                        })
+
+                        keyName.map((value) => {
+
+                            heading.innerHTML = "";
+
+                            value.splice(2, 2)
+                            value.map((val) => {
+                                
+                                var th = document.createElement("th");
+                                th.innerHTML = val;
+                                heading.appendChild(th);
+                            })
+
+
+                            // console.log(value)
+                        })
+
+                        for (value of data) {
+
+                            subHeading.innerHTML = "";
+
+                            var tr = document.createElement("tr");
+                            delete value.LoanId;
+                            delete value.LoanType;
+
+                            // console.log(value);
+
+                            for (val in value) {
+
+                                var td = document.createElement("td");
+
+                                td.innerHTML = value[val];
+                                tr.appendChild(td);
+                                subHeading.appendChild(tr);
+
+
+                                // console.log(value[val])
+                            }
+
+
+                        }
+
+                    })
+
+            }
+
+        
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+    <header>
+        <!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
+        <i></i>
+        <span class=" justify-content-center">TRACK YOUR LOAN</span>
+        <div></div>
+
+    </header>
+
+    <section class="row mt-4 ps-3">
+
+        <div class="col-2">
+
+            <select class="form-control" id="showLoan" onchange="Loanchange()"></select>
+
+        </div>
+        <div class="col-10">
+            <div id="showDetails">
+
+            </div>
+
+            <div>
+                <table class="table-bordered w-100 table-responsive table rounded-2">
+                    <thead>
+                        <tr id="dataHead">
+
+                        </tr>
+                    </thead>
+                    <tbody id="dataBody">
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+</body>
+
+</html>

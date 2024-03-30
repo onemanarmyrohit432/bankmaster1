@@ -1,0 +1,13 @@
+[
+    {
+        "Id":1,
+        "Name":"Susant Nayak",
+        "LoanId":131696987,
+        "LoanType":"House Loan",
+        "startDate":"01/02/2024",
+        "endDate":"01/02/2026",
+        "Tenure":2,
+        "Rate-Of-Intrest":"6%",
+        "Emi-Date":"02/03/2024"
+    }
+]

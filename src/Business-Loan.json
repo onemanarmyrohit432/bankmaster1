@@ -1,0 +1,13 @@
+[
+    {
+        "Id":1,
+        "Name":"Ravi Verma",
+        "LoanId":131696987,
+        "LoanType":"Business Loan",
+        "startDate":"02/03/2024",
+        "endDate":"02/03/2026",
+        "Tenure":2,
+        "Rate-Of-Intrest":"5%",
+        "Emi-Date":"03/03/2024"
+    }
+]

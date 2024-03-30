@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-shadow: border-box;
+}
+
+header{
+    background-color:rgb(19, 19, 103) ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+}
+header i{
+    padding: 2rem;
+    padding-left: 3rem;
+    color: white;
+    justify-content: space-around;
+}
+.fa{
+    font-size: 40px
+}
+header span{
+    padding-top: 1rem;
+    text-align: center;
+    font-size: 3em;
+    color: #fff;
+}
+section p ,h3{
+    font-size: 2em;
+    color:rgb(19, 19, 103);
+    padding: 2rem;
+    text-align: center;
+    font-weight:bold;
+}
